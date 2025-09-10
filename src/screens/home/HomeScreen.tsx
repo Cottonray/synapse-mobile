@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../navigations/types';
 import { useTheme } from '../../hooks/useTheme';
 import {
   HomeCard as HomeCardType,
@@ -32,7 +33,7 @@ import {
 const HomeScreen = () => {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const navigation = useNavigation<StackNavigationProp<any>>();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   const [concepts, setConcepts] = useState<Concept[]>([]);
   const [forgettingData, setForgettingData] = useState<ForgettingCurveData[]>(
@@ -89,7 +90,7 @@ const HomeScreen = () => {
       icon: '🃏',
       count: concepts.length,
       color: theme.colors.primary,
-      onPress: () => Alert.alert('플립카드', '암기장 화면으로 이동'),
+      onPress: () => navigation.navigate(Routes.FlashCards),
     },
     {
       id: 'studyList',
@@ -98,7 +99,7 @@ const HomeScreen = () => {
       icon: '📚',
       count: concepts.length,
       color: theme.colors.info,
-      onPress: () => Alert.alert('암기목록', '전체 개념 목록으로 이동'),
+      onPress: () => navigation.navigate(Routes.StudyList),
     },
     {
       id: 'forgetting',
@@ -107,20 +108,7 @@ const HomeScreen = () => {
       icon: '⚠️',
       count: almostForgottenConcepts.length,
       color: theme.colors.warning,
-      onPress: () =>
-        Alert.alert(
-          '거의 잊혀져가는 개념',
-          `${almostForgottenConcepts.length}개의 개념이 복습이 필요합니다`,
-        ),
-    },
-    {
-      id: 'recommendation',
-      title: t('screens.home.cards.recommendation.title'),
-      subtitle: t('screens.home.cards.recommendation.subtitle'),
-      icon: '🤖',
-      count: Math.floor(Math.random() * 5) + 3, // 임시 랜덤 숫자
-      color: theme.colors.success,
-      onPress: () => Alert.alert('추천 학습', 'AI 추천 학습 화면으로 이동'),
+      onPress: () => navigation.navigate(Routes.ForgettingConcepts),
     },
   ];
 
@@ -195,7 +183,6 @@ const HomeScreen = () => {
             </CardsRow>
             <CardsRow>
               <HomeCard card={homeCards[2]} />
-              <HomeCard card={homeCards[3]} />
             </CardsRow>
           </CardsGrid>
 

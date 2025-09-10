@@ -5,3 +5,14 @@ export type MainNavigationItem = {
   component: () => React.JSX.Element;
   options: BottomTabNavigationOptions;
 };
+
+export type RootStackParamList = {
+  Main: undefined;
+  ConceptDetail: {
+    conceptId?: string;
+    mode: 'create' | 'edit';
+  };
+  FlashCards: undefined;
+  StudyList: undefined;
+  ForgettingConcepts: undefined;
+};

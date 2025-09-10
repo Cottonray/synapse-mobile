@@ -14,10 +14,10 @@ export interface Concept {
   id: string;
   title: string;
   subtitle?: string;
-  content: string;
+  description: string; // content -> description으로 변경
   category: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string; // Date -> string으로 변경 (ISO string)
+  updatedAt: string; // Date -> string으로 변경 (ISO string)
   isFavorite: boolean;
   difficulty: 'easy' | 'medium' | 'hard';
   tags: string[];
@@ -53,6 +53,8 @@ export interface ForgettingCurveData {
   forgettingRate: number; // 0-1 사이 값 (망각 정도)
   nextReviewDate: Date;
   priority: 'high' | 'medium' | 'low';
+  lastStudied?: string; // 마지막 학습일
+  daysUntilForgotten?: number; // 완전히 잊혀지기까지 남은 일수
 }
 
 // 홈화면 카드 타입
