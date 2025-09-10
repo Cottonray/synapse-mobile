@@ -7,7 +7,29 @@
   "screens": {
     "home": {
       "title": "홈",
-      "welcome": "환영합니다!"
+      "welcome": "환영합니다!",
+      "cards": {
+        "flashcards": {
+          "title": "암기장",
+          "subtitle": "플립카드로 개념 학습"
+        },
+        "studyList": {
+          "title": "암기목록",
+          "subtitle": "모든 학습 개념 보기"
+        },
+        "forgetting": {
+          "title": "거의 잊혀져가는 개념",
+          "subtitle": "복습이 필요한 개념들"
+        },
+        "recommendation": {
+          "title": "추천 학습",
+          "subtitle": "AI가 추천하는 개념"
+        }
+      },
+      "favorites": {
+        "title": "즐겨찾기 개념",
+        "empty": "즐겨찾기한 개념이 없습니다."
+      }
     },
     "analytics": {
       "title": "분석",

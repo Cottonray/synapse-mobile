@@ -11,6 +11,22 @@ import {
 
 const { width: screenWidth } = Dimensions.get('window');
 
+const shadowStyles = {
+  tabBar: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: -5 },
+    shadowOpacity: 0.075,
+    shadowRadius: 10,
+    elevation: 10,
+  },
+  indicator: {
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+};
+
 const SlidingTabBar: React.FC<BottomTabBarProps> = ({
   state,
   descriptors,
@@ -34,25 +50,13 @@ const SlidingTabBar: React.FC<BottomTabBarProps> = ({
   }
 
   return (
-    <TabBarContainer
-      theme={theme}
-      style={{
-        shadowColor: '#000000',
-        shadowOffset: { width: 0, height: -5 },
-        shadowOpacity: 0.075,
-        shadowRadius: 10,
-        elevation: 10,
-      }}
-    >
+    <TabBarContainer theme={theme} style={shadowStyles.tabBar}>
       {/* 수루룩 이동하는 배경 동그라미 */}
       <TabIndicator
         theme={theme}
         style={{
+          ...shadowStyles.indicator,
           shadowColor: theme.colors.tabBarActiveBackground,
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.3,
-          shadowRadius: 8,
-          elevation: 8,
         }}
         animate={{
           translateX: getIndicatorPosition(state.index),
